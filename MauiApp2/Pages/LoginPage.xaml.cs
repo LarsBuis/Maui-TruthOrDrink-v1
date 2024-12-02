@@ -7,15 +7,15 @@ namespace MauiApp2;
 public partial class LoginPage : ContentPage
 {
     // Hardcoded admin credentials
-    private const string AdminUsername = "admin";
-    private const string AdminPassword = "admin";
+    private const string AdminUsername = "1";
+    private const string AdminPassword = "1";
 
     public LoginPage()
     {
         InitializeComponent();
     }
 
-    private void OnLoginClicked(object sender, EventArgs e)
+    private async void OnLoginClicked(object sender, EventArgs e)
     {
         string username = UsernameEntry.Text?.Trim();
         string password = PasswordEntry.Text;
@@ -27,7 +27,7 @@ public partial class LoginPage : ContentPage
             MessageLabel.IsVisible = true;
 
             // Navigate to the main page or admin page
-            Navigation.PushAsync(new GamePage());
+            await Navigation.PushAsync(new QuestionSelectionPage());
         }
         else
         {
@@ -36,4 +36,11 @@ public partial class LoginPage : ContentPage
             MessageLabel.IsVisible = true;
         }
     }
+
+    private void HomeToolbarItem_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new QuestionSelectionPage());
+    }
+
+
 }

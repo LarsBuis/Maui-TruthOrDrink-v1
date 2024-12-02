@@ -19,6 +19,8 @@ namespace MauiApp2
     		builder.Logging.AddDebug();
 #endif
 
+
+
             return builder.Build();
         }
     }
