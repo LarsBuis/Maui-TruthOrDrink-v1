@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.LoginPage"
+             BackgroundColor="#9966FF"
+			 NavigationPage.HasNavigationBar="False">
+	
+	<ContentPage.ToolbarItems>
+		<ToolbarItem
+			x:Name="HomeToolbarItem"
+			Text="HOME"
+			Clicked="HomeToolbarItem_Clicked" />
+	</ContentPage.ToolbarItems>
+
+
+	<VerticalStackLayout Padding="20" Spacing="40">
+		<!-- Logo -->
+		<Image Source="/Logotext.png" WidthRequest="250" HeightRequest="250" HorizontalOptions="Center" />
+
+		<!-- Card Background -->
+		<Frame BackgroundColor="#27233A" CornerRadius="10" Padding="20" HasShadow="True">
+			<VerticalStackLayout Spacing="15">
+				<Label Text="Login"
+                       FontSize="24"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+
+				<Entry x:Name="UsernameEntry"
+                       Placeholder="Username"
+                       BackgroundColor="#413B62"
+                       TextColor="White"
+                       PlaceholderColor="LightGray"
+                       Margin="0,10,0,0"
+                       HeightRequest="40" />
+
+				<Entry x:Name="PasswordEntry"
+                       Placeholder="Password"
+                       IsPassword="True"
+                       BackgroundColor="#413B62"
+                       TextColor="White"
+                       PlaceholderColor="LightGray"
+                       Margin="0,10,0,0"
+                       HeightRequest="40" />
+
+				<Button Text="Login"
+                        Clicked="OnLoginClicked"
+                        BackgroundColor="#413B62"
+                        TextColor="White"
+                        CornerRadius="5"
+                        HeightRequest="40" />
+
+				<Label x:Name="MessageLabel"
+                       TextColor="Red"
+                       IsVisible="False"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+			</VerticalStackLayout>
+		</Frame>
+	</VerticalStackLayout>
+</ContentPage>
