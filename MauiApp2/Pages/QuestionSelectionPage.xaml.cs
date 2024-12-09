@@ -55,7 +55,7 @@ public partial class QuestionSelectionPage : ContentPage
         {
             { "Questions", selectedQuestions }
         };
-            await Shell.Current.GoToAsync("GamePage", navigationParams);
+            await Navigation.PushAsync(new GamePage(selectedQuestions));
         }
     }
 }
