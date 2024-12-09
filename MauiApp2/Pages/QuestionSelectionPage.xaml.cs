@@ -12,8 +12,7 @@ public partial class QuestionSelectionPage : ContentPage
             {
                 "What’s your most embarrassing moment?",
                 "Have you ever accidentally texted the wrong person?",
-                "What’s the most awkward date you’ve been on?",
-                "balls"
+                "What’s the most awkward date you’ve been on?"
             }
         },
         {
