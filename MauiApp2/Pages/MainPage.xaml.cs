@@ -1,25 +1,51 @@
-﻿namespace MauiApp2
+﻿using MauiApp2.Models;
+
+namespace MauiApp2
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private readonly TodoDatabase _database;
 
-        public MainPage()
+        public MainPage(TodoDatabase database)
         {
             InitializeComponent();
+            _database = database;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            count++;
+            base.OnAppearing();
+            await RefreshTodoList();
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private async Task RefreshTodoList()
+        {
+            var items = await _database.GetItemsAsync();
+            TodoListView.ItemsSource = items;
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void AddItem(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TaskEntry.Text))
+            {
+                var newItem = new TodoItem { Name = TaskEntry.Text, IsCompleted = false };
+                await _database.SaveItemAsync(newItem);
+                TaskEntry.Text = string.Empty;
+                await RefreshTodoList();
+            }
+        }
+
+        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item is TodoItem selectedTask)
+            {
+                var delete = await DisplayAlert("Delete Task", $"Do you want to delete '{selectedTask.Name}'?", "Yes", "No");
+                if (delete)
+                {
+                    await _database.DeleteItemAsync(selectedTask);
+                    await RefreshTodoList();
+                }
+            }
         }
     }
-
 }

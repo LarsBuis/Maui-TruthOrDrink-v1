@@ -20,7 +20,8 @@ namespace MauiApp2
 #endif
 
 
-
+            builder.Services.AddSingleton<TodoDatabase>();
+            builder.Services.AddTransient<MainPage>();
             return builder.Build();
         }
     }
